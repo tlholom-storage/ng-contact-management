@@ -1,0 +1,66 @@
+<h1 mat-dialog-title>{{isEditAction === false ? 'Add Contact Information Form' : 'Update Contact Information Form'}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="contactFrom">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <mat-select placeholder="Title" formControlName="title">
+          <mat-option value="Mr">Mr</mat-option>
+          <mat-option value="Mrs">Mrs</mat-option>
+          <mat-option value="Miss">Miss</mat-option>
+          <mat-option value="Madam">Madam</mat-option>
+          <mat-option value="Sir">Sir</mat-option>
+          <mat-option value="Lord">Lord</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="name"/>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Surname</mat-label>
+        <input matInput placeholder="Surname" formControlName="surname"/>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Date Of Birth</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date_of_birth" type="datetime" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input matInput placeholder="Phone" formControlName="phone"/>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" formControlName="email"/>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Company</mat-label>
+        <input matInput placeholder="Company" formControlName="company"/>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Photo Url</mat-label>
+        <input matInput placeholder="Photo Url" formControlName="photo_url"/>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button class="ml3" mat-raised-button color="primary" (click)="manageContact()">{{isEditAction === false ? 'Save' : 'Update'}}</button>
+</div>

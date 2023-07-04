@@ -1,0 +1,128 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col">
+      <div>
+        <span class="h3 fw-bold">Manage Contacts</span>
+        <span class="small-space"></span>
+        <button mat-raised-button color="warn" (click)="openDialog()">
+          <mat-icon>add</mat-icon>
+          New
+        </button>
+        <span class="small-space"></span>
+        <button mat-raised-button color="warn" (click)="refreshCards()">
+          <mat-icon>refresh</mat-icon>
+          Refresh
+        </button>
+      </div>
+      <br />
+      <p class="fst-italic">
+        A contact manager is a software program that enables users to easily
+        store and find contact information, such as names, addresses, and
+        telephone numbers. They are contact-centric databases that provide a
+        fully integrated approach to tracking all information and communication
+        activities linked to contacts. Traditionally, a contact manager is
+        usually used for instances where the sales interaction model of the
+        organization is a one-to-many interaction model, in which a single sales
+        representative is responsible for multiple roles within a company.
+        Alternatively, a company with a many-to-many interaction model, in which
+        many sales representatives are targeting a single job role, a customer
+        relationship management (CRM) system is preferred
+      </p>
+      <form>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search Contact"
+                />
+              </div>
+              <div class="col">
+                <button mat-raised-button color="primary">
+                  <mat-icon>search</mat-icon>
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--Loading Spinner-->
+<mat-spinner [hidden]="!loading"></mat-spinner>
+
+<!--Error Message-->
+<div *ngIf="!loading && errorMessage" class="container mt-3">
+  <div class="row">
+    <div class="col">
+      <mat-error>
+        {{ errorMessage }}
+      </mat-error>
+    </div>
+
+  </div>
+</div>
+
+<!--Cards-->
+
+<div *ngIf="!loading && contacts.length > 0" class="container mt-3">
+  <div class="row">
+    <div *ngFor="let contact of contacts" class="col-md-6">
+      <div class="card list-group-item bg-light shadow-lg my-2">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-sm 4">
+              <img
+                alt="User Image"
+                [src]="
+                  contact.photo_url ||
+                  'https://www.bing.com/th?id=OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH&w=255&h=245&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2'
+                "
+                class="contact-img"
+              />
+            </div>
+            <div class="col-sm-6">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  Name : <span class="fw-bold">{{ contact.name }}</span>
+                </li>
+                <li class="list-group-item">
+                  Email : <span class="fw-bold">{{ contact.email }}</span>
+                </li>
+                <li class="list-group-item">
+                  Mobile : <span class="fw-bold">{{ contact.phone }}</span>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="col-sm-1 d-flex flex-column justify-contents-center align-items-center"
+            >
+              <a
+                class="btn btn-warning mt-1"
+                routerLink="/contacts/view/{{ contact._id }}"
+              >
+                <mat-icon> visibility </mat-icon>
+              </a>
+              <button
+                class="btn btn-primary mt-1"
+                (click)="onEditClick(contact._id!)"
+              >
+                <mat-icon> edit </mat-icon>
+              </button>
+              <button
+                class="btn btn-danger mt-1"
+                (click)="onDeleteClick(contact._id!)"
+              >
+                <mat-icon> delete </mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

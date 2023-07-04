@@ -1,0 +1,21 @@
+@use '@angular/material' as mat;
+@import '@angular/material/theming';
+@import 'color-palettes/ng-crud-material-grey.scss';
+@import 'color-palettes/ng-crud-material-blue.scss';
+
+$primary: mat.define-palette($ng-crud-material-blue);
+$accent: mat.define-palette($ng-crud-material-grey);
+$warn: mat.define-palette(mat.$red-palette);
+
+$text-color: #4d4d4d;
+$card-color-grey: #f4f4f4;
+
+$max-mobile-width: 600px;
+
+$ng-crud-material-theme: mat.define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+  )
+));
